@@ -2,15 +2,15 @@ const deleteButtons = document.querySelectorAll('#delete-button');
 
 deleteButtons.forEach((deleteButton) => {
   deleteButton.addEventListener('click', async function () {
-    const projectId = deleteButton.Project.id;
+    const projectId = deleteButton.getAttribute('data-id');
+    console.log(projectId);
     try {
       const response = await fetch(`/api/projects/${projectId}`, {
         method: 'DELETE',
       });
+      console.log(response);
       if (response.ok) {
-        console.log('Project deleted successfully');
-        // Optionally, remove the project from the UI
-        deleteButton.closest('tr').remove();
+        window.location.reload();
       } else {
         throw new Error('Error deleting project');
       }

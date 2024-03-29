@@ -2,14 +2,14 @@
 <div class="row align-center mb-5">
   <div class="col-md-6">
      
-    <h4><a href="/api/projects/{{id}}">{{project.name}}</a></h4>
+    <h4><a href="/projects/{{id}}">{{project.name}}</a></h4>
     <h5>{{project.description}}</h5>
   </div>
 
 </div>
 
-<div class="form-group" id="delete-button">
-    <button class="btn btn-primary" type="delete">delete</button>
+<div class="form-group" id="delete-button" data-id="{{project.id}}">
+    <button class="btn btn-primary"  type="delete">delete</button>
   </div>
 {{/each}}
 
@@ -36,3 +36,4 @@
 </form>
 
 <script src="/js/delete.js"></script>
+<script src="/js/profile.js"></script>
