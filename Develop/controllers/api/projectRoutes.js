@@ -19,13 +19,31 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/profile', async (req, res) => {
+  try {
+    const profile = await Project.findAll({});
+    if (!profile) {
+      return res.status(404).json({ msg: 'Profile not found' });
+    }
+
+    const projects = profile.map((project) => project.get({ plain: true }));
+
+    res.render('profile', {
+      projects,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/api/users/profile');
+    res.redirect('/api/projects/profile');
     return;
+  } else {
+    res.render('login');
   }
-
-  res.render('login');
 });
 
 router.get('/:id', async (req, res) => {
