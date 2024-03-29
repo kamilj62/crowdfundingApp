@@ -3,10 +3,7 @@ const { Project } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
-    const userData = await Project.findAll({
-      // attributes: { exclude: ['password'] },
-      // order: [['name', 'ASC']],
-    });
+    const userData = await Project.findAll({});
 
     const users = userData.map((project) => project.get({ plain: true }));
 
@@ -24,7 +21,7 @@ router.get('/', async (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/users/profile');
+    res.redirect('/api/users/profile');
     return;
   }
 

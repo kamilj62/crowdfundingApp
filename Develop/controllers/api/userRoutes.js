@@ -19,7 +19,7 @@ router.get('/profile', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/profile', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
