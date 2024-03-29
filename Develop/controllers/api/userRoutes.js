@@ -1,6 +1,24 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+router.get('/profile', async (req, res) => {
+  try {
+    const profile = await User.findOne();
+    if (!profile) {
+      return res.status(404).json({ msg: 'Profile not found' });
+    }
+
+    const projects = profile.get({ plain: true });
+
+    res.render('profile', {
+      projects,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);

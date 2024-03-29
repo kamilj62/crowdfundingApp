@@ -1,4 +1,4 @@
-const loginFormHandler = async event => {
+const loginFormHandler = async (event) => {
   event.preventDefault();
 
   const email = document.querySelector('#email-login').value.trim();
@@ -8,11 +8,11 @@ const loginFormHandler = async event => {
     const response = await fetch('/api/projects/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/users/profile');
     } else {
       alert('Failed to log in');
     }

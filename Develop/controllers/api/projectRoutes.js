@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/users/profile');
     return;
   }
 
@@ -33,7 +33,7 @@ router.get('/login', (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const category = await Project.findByPk(req.params.id, {});
+    const category = await Project.findByPk(req.params.id);
     if (!category) {
       return res.status(404).json({ msg: 'Project not found' });
     }
