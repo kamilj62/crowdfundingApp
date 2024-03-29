@@ -1,8 +1,8 @@
 const createFormHandler = async (event) => {
   event.preventDefault();
 
-  const email = document.querySelector('#email-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+  const email = document.querySelector('#email-signup').value.trim();
+  const password = document.querySelector('#password-signup').value.trim();
 
   if (email && password) {
     const response = await fetch('/api/users/login', {
@@ -14,11 +14,10 @@ const createFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/api/users/profile');
     } else {
-      alert('Failed to log in');
+      alert('Failed to signup');
     }
   }
 };
 
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', createFormHandler);
+document.querySelector('signup-form');
+document.addEventListener('submit', createFormHandler);
